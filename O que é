@@ -1,4 +1,14 @@
 Remote Procedure Call  - Uma chamada remota. 
+
+- É um framework desenvolvido pelo google que tem o objetivo de facilitar o processo de comunicação entre
+sistemas de uma forma extremamente rápida, leve, independente de linguagem. 
+
+- Faz parta da Cloud Native Computation Foundation que é a mesma do kubernetes.
+
+##########################################################################################
+
+Pode ser utilizado em mobile, browsers e backend.
+
 A grande sacada do GRPC é conseguir executar uma função de forma remota em outra maquina. Isto é RPC.
 
 Foi criado pelo google e praticamente todas comunicações do google estão usando GRPC.
@@ -7,21 +17,59 @@ onde falamos todas informações que vão em uma request e todas informações q
 E basicamente assim o GRPC e utilizando o protosee que é o compilador do protocol buffer, ele consegue
 gerar todo o codigo para conseguir usar o GRPC. O GRPC no final das contas, acaba se tornando um framework.
 
+##########################################################################################
+
 Vantagens: 
 1 - Você tem um contrato entre as pontas. A partir do protofile, você irá garantir que todos os dados que 
 estão sendo enviados e recebidos eles seguem o contrato, então não há problemas de comunicação.
 
 2- Os arquivos não são Json, são binarios, então muito menores.
 
-3- Trabalhando com GRPC você utiliza Http2. 
+3- Trabalhando com GRPC você utiliza Http2 de 2015. 
+
+4- Geração das bibliotecas de forma automática.
+
+5- Trabalha com stream bidirecional que é a Comunicação de ambos os lados, onde cliente e servidor,
+enviam stream de dados  
+
+#############################################################################################
 
 A vantagem em relação ao Rest é que você tem varias formas de comunicação. 
 Ex
 - Comunicação unaria, ou seja, você envia uma request e recebe uma response.
 
+- Server streaming - 
+
 - Comunicação que envia uma request do cliente e o server envia um stream de dados para você. 
 
-- Consegue também ter uma comunicação que o client manda um stream de dados e o server manda aquela resposta. 
+- Bi directional streaming - 
 
-- Comunicação de ambos os lados, cliente e servidor, mandam stream de dados. 
-É uma comunicação bi direcional via stream de dados.
+- Client streaming - Consegue também ter uma comunicação que o client manda um stream de dados e o server manda
+aquela resposta. 
+
+
+##############################################################################################
+
+Protocol buffer- É uma linguagem neutra que o google criou para dessiarilizar e serializar dados. 
+
+Ex:
+
+syntax = "proto3"
+
+message SearchRequest {
+string query = 1;
+int32 page_number=2;
+int32 result_per_page =3;
+}
+
+1, 2 e 3 são as tags que são a ordem que os parametros serão chamados.
+
+#############################################################################################
+
+Http2- Quando abre uma conexão o servidor pode enviar dados para o cliente e o cliente enviar dados para 
+o servidor pela mesma conexão.
+- Utiliza Server push
+- headers são comprimidos.
+- Gasta menos recursos de rede.
+- Processo mais veloz
+####################################################################################
