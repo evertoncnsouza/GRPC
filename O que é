@@ -1,0 +1,27 @@
+Remote Procedure Call  - Uma chamada remota. 
+A grande sacada do GRPC é conseguir executar uma função de forma remota em outra maquina. Isto é RPC.
+
+Foi criado pelo google e praticamente todas comunicações do google estão usando GRPC.
+A grande sacada são os protocol buffers, que conseguem criar uma especificação chamada de protofiles, 
+onde falamos todas informações que vão em uma request e todas informações que vem em uma response. 
+E basicamente assim o GRPC e utilizando o protosee que é o compilador do protocol buffer, ele consegue
+gerar todo o codigo para conseguir usar o GRPC. O GRPC no final das contas, acaba se tornando um framework.
+
+Vantagens: 
+1 - Você tem um contrato entre as pontas. A partir do protofile, você irá garantir que todos os dados que 
+estão sendo enviados e recebidos eles seguem o contrato, então não há problemas de comunicação.
+
+2- Os arquivos não são Json, são binarios, então muito menores.
+
+3- Trabalhando com GRPC você utiliza Http2. 
+
+A vantagem em relação ao Rest é que você tem varias formas de comunicação. 
+Ex
+- Comunicação unaria, ou seja, você envia uma request e recebe uma response.
+
+- Comunicação que envia uma request do cliente e o server envia um stream de dados para você. 
+
+- Consegue também ter uma comunicação que o client manda um stream de dados e o server manda aquela resposta. 
+
+- Comunicação de ambos os lados, cliente e servidor, mandam stream de dados. 
+É uma comunicação bi direcional via stream de dados.
